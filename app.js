@@ -4,6 +4,8 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const express = require("express");
 const login = require("./src/routes/login.route");
+const auth = require("./src/routes/auth.route");
+const apiConfig = require("./src/config/api.config");
 
 const app = express();
 
@@ -14,9 +16,8 @@ app.use(express.static(`${__dirname}/public`));
 app.use(cors()).use(cookieParser());
 
 app.use("/login", login);
+app.use("/auth", auth);
 
-const APP_PORT = 5000;
-
-app.listen(APP_PORT, () => {
-  console.log(`Server listening at port ${APP_PORT}`);
+app.listen(apiConfig.APP_PORT, () => {
+  console.log(`Server listening at port ${apiConfig.APP_PORT}`);
 });
